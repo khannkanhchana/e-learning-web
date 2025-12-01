@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from 'react';
-import { 
-  BookOpen, Search, Clock, ArrowRight, Bookmark, Globe, 
-  Sparkles, Star, Zap, TrendingUp, CheckCircle, XCircle, 
-  HelpCircle, Layers, AlertTriangle, Lightbulb, Target
+import {
+  BookOpen, Search, Clock, ArrowRight, Bookmark, Globe,
+  Sparkles, Star, Zap, TrendingUp, CheckCircle, XCircle,
+  HelpCircle, Layers, AlertTriangle, Lightbulb, Target, UserCheck, Scale,
 } from 'lucide-react';
 import Navbar from '../navbar/navbar';
-
+import Link from "next/link";
 // --- TYPE DEFINITIONS ---
 interface Category {
   title: string;
@@ -124,14 +124,14 @@ const CategoryCard = ({ category }: { category: Category }) => (
 const EducationalContent = () => {
   return (
     <div className="space-y-12 mt-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
-      
+
       {/* 1. Intro Section */}
       <div className="relative">
         <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 to-violet-500 rounded-full"></div>
         <h2 className="text-3xl font-bold text-slate-800 mb-4">What Are Phrasal Verbs?</h2>
         <p className="text-slate-600 text-lg leading-relaxed mb-6">
-          Phrasal verbs are a cornerstone of English fluency. They consist of two or more words: 
-          <span className="font-bold text-slate-800"> a verb + a particle </span> 
+          Phrasal verbs are a cornerstone of English fluency. They consist of two or more words:
+          <span className="font-bold text-slate-800"> a verb + a particle </span>
           (preposition or adverb). While the verb provides the base, the particle alters the meaning—sometimes drastically.
         </p>
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm grid md:grid-cols-3 gap-6">
@@ -183,7 +183,7 @@ const EducationalContent = () => {
         {/* Challenges */}
         <div className="bg-amber-50/50 rounded-[2rem] p-8 border border-amber-100">
           <div className="flex items-center gap-3 mb-6">
-             <div className="bg-amber-100 p-2 rounded-lg text-amber-600">
+            <div className="bg-amber-100 p-2 rounded-lg text-amber-600">
               <AlertTriangle className="w-6 h-6" />
             </div>
             <h3 className="text-xl font-bold text-slate-800">Common Challenges</h3>
@@ -209,10 +209,10 @@ const EducationalContent = () => {
       {/* 3. How to Master (Timeline Style) */}
       <div className="bg-white rounded-[2rem] p-8 border border-slate-100 shadow-sm">
         <div className="flex items-center gap-3 mb-8">
-           <Layers className="w-6 h-6 text-blue-500" />
-           <h3 className="text-2xl font-bold text-slate-800">How to Master Phrasal Verbs</h3>
+          <Layers className="w-6 h-6 text-blue-500" />
+          <h3 className="text-2xl font-bold text-slate-800">How to Master Phrasal Verbs</h3>
         </div>
-        
+
         <div className="relative pl-4 md:pl-8 space-y-10">
           {/* Vertical Line */}
           <div className="absolute left-4 md:left-8 top-2 bottom-2 w-0.5 bg-slate-100 -translate-x-1/2"></div>
@@ -243,24 +243,24 @@ const EducationalContent = () => {
 // --- COMPONENT: DAILY CHALLENGE ---
 const DailyChallenge = () => {
   const [answered, setAnswered] = useState<number | null>(null);
-  const correctAnswer = 1; 
+  const correctAnswer = 1;
 
   const options = ["To vomit", "To mention/introduce", "To lift something"];
 
   return (
     <div className="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] relative overflow-hidden">
       <div className="absolute top-0 right-0 w-32 h-32 bg-purple-50 rounded-bl-full -z-0"></div>
-      
+
       <div className="flex items-center gap-2 mb-4 relative z-10">
         <div className="bg-gradient-to-br from-purple-500 to-indigo-600 text-white p-2 rounded-lg shadow-md shadow-purple-200">
-           <Zap className="w-5 h-5" />
+          <Zap className="w-5 h-5" />
         </div>
         <h3 className="font-bold text-lg text-slate-800">Daily Challenge</h3>
       </div>
 
       <div className="space-y-4 relative z-10">
         <p className="text-slate-600 font-medium">What is the meaning of <span className="text-purple-600 font-bold bg-purple-50 px-2 rounded">"Bring up"</span>?</p>
-        
+
         <div className="space-y-2">
           {options.map((opt, idx) => (
             <button
@@ -268,11 +268,11 @@ const DailyChallenge = () => {
               onClick={() => setAnswered(idx)}
               disabled={answered !== null}
               className={`w-full text-left px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 border flex items-center justify-between
-                ${answered === null 
-                  ? "bg-slate-50 border-slate-100 text-slate-600 hover:bg-purple-50 hover:border-purple-200 hover:text-purple-700" 
-                  : answered === idx && idx === correctAnswer 
+                ${answered === null
+                  ? "bg-slate-50 border-slate-100 text-slate-600 hover:bg-purple-50 hover:border-purple-200 hover:text-purple-700"
+                  : answered === idx && idx === correctAnswer
                     ? "bg-emerald-50 border-emerald-200 text-emerald-700"
-                    : answered === idx && idx !== correctAnswer 
+                    : answered === idx && idx !== correctAnswer
                       ? "bg-red-50 border-red-200 text-red-600"
                       : idx === correctAnswer
                         ? "bg-emerald-50 border-emerald-200 text-emerald-700"
@@ -286,7 +286,7 @@ const DailyChallenge = () => {
             </button>
           ))}
         </div>
-        
+
         {answered === correctAnswer && (
           <div className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-2 rounded-lg animate-in fade-in slide-in-from-top-2">
             🎉 Correct! Usually used in conversation.
@@ -302,7 +302,7 @@ export default function PhrasalVerbs() {
   return (
     <>
       <div className="min-h-screen bg-[#F8FAFC] relative overflow-x-hidden font-sans">
-        <Navbar/>
+        <Navbar />
         {/* Background Decor */}
         <div className="hidden lg:flex flex-col gap-6 absolute left-6 top-40 opacity-20 select-none pointer-events-none">
           {[...Array(8)].map((_, i) => <div key={i} className="text-blue-600 text-xl font-bold">+ + +</div>)}
@@ -310,16 +310,18 @@ export default function PhrasalVerbs() {
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-b from-blue-50 to-transparent rounded-full blur-3xl opacity-60 pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-10">
-          
+
           {/* Header Section */}
           <div className="mb-12">
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div className="flex-1">
                 {/* Breadcrumb */}
                 <div className="inline-flex flex-wrap items-center gap-2 text-xs font-semibold bg-white px-4 py-1.5 rounded-full shadow-sm border border-slate-100 text-slate-500 mb-6">
-                  <a href="#" className="hover:text-blue-500 transition-colors">Home</a>
+                  <a href="/" className="hover:text-blue-500 transition-colors">Home</a>
                   <span className="text-slate-300">/</span>
-                  <a href="#" className="hover:text-blue-500 transition-colors">Expressions</a>
+                  <Link href="/expressions" className="hover:text-blue-500 transition-colors">
+                    Expressions
+                  </Link>
                   <span className="text-slate-300">/</span>
                   <span className="text-blue-600">Phrasal Verbs</span>
                 </div>
@@ -346,7 +348,7 @@ export default function PhrasalVerbs() {
           </div>
 
           <div className="flex flex-col lg:flex-row gap-8 mb-20">
-            
+
             {/* Left Column: Main Content */}
             <div className="flex-1 min-w-0">
               {/* Category Grid */}
@@ -354,14 +356,14 @@ export default function PhrasalVerbs() {
                 {CATEGORIES.map((category, index) => (
                   <CategoryCard key={index} category={category} />
                 ))}
-                
+
                 {/* Educational Note */}
                 <div className="md:col-span-1 xl:col-span-2 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-[2rem] p-6 border border-blue-100 flex items-center justify-between gap-4">
-                    <div>
-                      <h3 className="font-bold text-blue-900 text-lg">Did you know?</h3>
-                      <p className="text-blue-700/80 text-sm mt-1">Native speakers use phrasal verbs more often than formal verbs in daily conversation.</p>
-                    </div>
-                    <div className="bg-white p-3 rounded-full shadow-sm text-2xl">💡</div>
+                  <div>
+                    <h3 className="font-bold text-blue-900 text-lg">Did you know?</h3>
+                    <p className="text-blue-700/80 text-sm mt-1">Native speakers use phrasal verbs more often than formal verbs in daily conversation.</p>
+                  </div>
+                  <div className="bg-white p-3 rounded-full shadow-sm text-2xl">💡</div>
                 </div>
               </div>
 
@@ -371,46 +373,46 @@ export default function PhrasalVerbs() {
 
             {/* Right Column: Sidebar */}
             <div className="w-full lg:w-80 flex flex-col gap-6 shrink-0">
-               <DailyChallenge />
+              <DailyChallenge />
 
-               {/* Progress Summary */}
-               <div className="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
-                  <div className="flex items-center gap-3 mb-4">
-                    <TrendingUp className="w-5 h-5 text-emerald-500" />
-                    <h3 className="font-bold text-slate-800">Your Progress</h3>
-                  </div>
-                  <div className="flex justify-between items-end mb-2">
-                    <span className="text-3xl font-black text-slate-800">12%</span>
-                    <span className="text-xs font-bold text-slate-400 mb-1">Total Mastery</span>
-                  </div>
-                  <div className="w-full bg-slate-100 rounded-full h-2 mb-4">
-                     <div className="bg-emerald-400 h-full rounded-full w-[12%]"></div>
-                  </div>
-                  <button className="w-full py-2.5 rounded-xl border border-slate-200 text-slate-600 text-sm font-bold hover:bg-slate-50 transition-colors">
-                    View Full Stats
-                  </button>
-               </div>
-               
-               {/* LanGeek Badge (Optional context helper based on your text) */}
-               <div className="bg-slate-800 text-white rounded-[2rem] p-6 shadow-xl relative overflow-hidden">
-                 <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-full"></div>
-                 <h3 className="font-bold text-lg mb-2 relative z-10">Powered by LanGeek</h3>
-                 <p className="text-slate-300 text-sm relative z-10">Comprehensive database and contextual examples.</p>
-               </div>
+              {/* Progress Summary */}
+              <div className="bg-white rounded-[2rem] p-6 border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+                <div className="flex items-center gap-3 mb-4">
+                  <TrendingUp className="w-5 h-5 text-emerald-500" />
+                  <h3 className="font-bold text-slate-800">Your Progress</h3>
+                </div>
+                <div className="flex justify-between items-end mb-2">
+                  <span className="text-3xl font-black text-slate-800">12%</span>
+                  <span className="text-xs font-bold text-slate-400 mb-1">Total Mastery</span>
+                </div>
+                <div className="w-full bg-slate-100 rounded-full h-2 mb-4">
+                  <div className="bg-emerald-400 h-full rounded-full w-[12%]"></div>
+                </div>
+                <button className="w-full py-2.5 rounded-xl border border-slate-200 text-slate-600 text-sm font-bold hover:bg-slate-50 transition-colors">
+                  View Full Stats
+                </button>
+              </div>
+
+              {/* LanGeek Badge (Optional context helper based on your text) */}
+              <div className="bg-slate-800 text-white rounded-[2rem] p-6 shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-bl-full"></div>
+                <h3 className="font-bold text-lg mb-2 relative z-10">Powered by LanGeek</h3>
+                <p className="text-slate-300 text-sm relative z-10">Comprehensive database and contextual examples.</p>
+              </div>
             </div>
 
           </div>
 
           {/* Bottom CTA */}
           <div className="relative overflow-hidden bg-gradient-to-br from-emerald-600 via-indigo-600 to-emerald-700 rounded-3xl shadow-[0_20px_60px_rgba(168,85,247,0.4)] w-full">
-             <div className="p-8 md:p-12 text-center text-white relative z-10">
-                <h2 className="text-2xl md:text-3xl font-black mb-4">Ready to level up?</h2>
-                <p className="mb-6 opacity-90 text-sm md:text-base">Join thousands of learners making their English sound natural.</p>
-                <button className="bg-white text-emerald-600 px-8 py-3 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-black/20">Start Learning Free</button>
-             </div>
-             {/* Background Effects */}
-             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
-          </div> 
+            <div className="p-8 md:p-12 text-center text-white relative z-10">
+              <h2 className="text-2xl md:text-3xl font-black mb-4">Ready to level up?</h2>
+              <p className="mb-6 opacity-90 text-sm md:text-base">Join thousands of learners making their English sound natural.</p>
+              <button className="bg-white text-emerald-600 px-8 py-3 rounded-xl font-bold hover:scale-105 transition-transform shadow-lg shadow-black/20">Start Learning Free</button>
+            </div>
+            {/* Background Effects */}
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+          </div>
 
         </main>
       </div>

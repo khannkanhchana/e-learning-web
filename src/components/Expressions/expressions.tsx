@@ -15,6 +15,10 @@ import Navbar from "../navbar/navbar";
 export default function Expressions() {
   const [activeTab, setActiveTab] = React.useState("All");
 
+  // Define the SVG pattern for the plus signs
+  const plusPattern = `data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23818cf8' stroke-width='2' opacity='0.4'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E`;
+
+
   return (
     // Changed main wrapper to relative and overflow-hidden to contain the background shapes
     <div className="min-h-screen bg-white relative overflow-hidden font-sans text-slate-900 selection:bg-orange-100">
@@ -22,13 +26,30 @@ export default function Expressions() {
       {/* ========== BACKGROUND DECORATIONS ========== */}
       <div className="absolute inset-0 pointer-events-none -z-10">
 
-        {/* 1. Subtle Dot Pattern (Technical/Academic Feel) */}
+        {/* 1. Subtle Dot Pattern (Existing) */}
         <div className="absolute inset-0 opacity-[0.4]"
           style={{
             backgroundImage: 'radial-gradient(#cbd5e1 1px, transparent 1px)',
             backgroundSize: '32px 32px'
           }}>
         </div>
+
+        {/* --- NEW: Left Side Plus Pattern Decoration --- */}
+        <div className="absolute hidden 2xl:block left-12 top-1/2 -translate-y-1/2 w-32 h-96 -z-10"
+             style={{
+               backgroundImage: `url("${plusPattern}")`,
+               backgroundRepeat: 'repeat'
+             }}>
+        </div>
+
+         {/* --- NEW: Right Side Plus Pattern Decoration --- */}
+        <div className="absolute hidden 2xl:block right-12 top-1/2 -translate-y-1/2 w-32 h-96 -z-10"
+             style={{
+               backgroundImage: `url("${plusPattern}")`,
+               backgroundRepeat: 'repeat'
+             }}>
+        </div>
+
 
         {/* 2. Left Side "Glow" (Matches the Orange Phrasal Verbs theme) */}
         <div className="absolute -top-[10%] -left-[10%] w-[40vw] h-[40vw] rounded-full bg-gradient-to-r from-orange-100/80 to-yellow-100/80 blur-[80px] opacity-60 mix-blend-multiply animate-pulse-slow"></div>
@@ -130,7 +151,7 @@ export default function Expressions() {
 
                 <div>
                   <Link
-                    href="/phrasalVerbs"
+                    href="/expressions/PhrasalVerb"
                     className="group border border-orange-200 text-orange-600 px-6 py-2 rounded-full font-medium hover:bg-orange-50 transition flex items-center gap-2 text-sm bg-transparent w-fit"
                   >
                     Explore Verbs
@@ -167,9 +188,12 @@ export default function Expressions() {
                   </p>
                 </div>
                 <div>
-                  <button className="group border border-gray-300 text-gray-600 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition flex items-center gap-2 text-sm w-fit">
+                  <Link href="/expressions/Collocations">
+                  <button className="group border border-gray-300 text-gray-600 px-6 py-2 rounded-full font-medium hover:bg-gray-100 transition flex items-center gap-2 text-sm w-fit cursor-pointer">
                     Start Learning <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
+                  </Link>
+
                 </div>
               </div>
 
@@ -217,9 +241,11 @@ export default function Expressions() {
 
                 </div>
                 <div className="mt-auto pt-8">
-                  <button className="group bg-teal-600 text-white px-8 py-3 rounded-full font-medium hover:bg-teal-700 hover:shadow-lg transition-all flex items-center gap-2 text-sm w-fit">
+                  <Link href="/expressions/Proverb">
+                  <button className="group bg-teal-600 text-white px-8 py-3 rounded-full font-medium hover:bg-teal-700 hover:shadow-lg transition-all flex items-center gap-2 text-sm w-fit cursor-pointer">
                     Read Proverbs <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -264,9 +290,11 @@ export default function Expressions() {
                 to understand how native speakers use them in everyday conversations.
               </p>
               <div className="mt-8 hidden md:block">
-                <button className="group border border-red-300 text-red-600 px-6 py-2 rounded-full font-medium hover:bg-red-50 transition flex items-center gap-2 text-sm bg-transparent">
+                <Link href="/expressions/IdiomsPage">
+                <button className="group border border-red-300 text-red-600 px-6 py-2 rounded-full font-medium hover:bg-red-50 transition flex items-center gap-2 text-sm bg-transparent cursor-pointer">
                   Explore Idioms <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
+                </Link>
               </div>
             </div>
 

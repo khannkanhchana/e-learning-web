@@ -1,4 +1,4 @@
-
+'use client';
 export default function Navbar() {
   return (
     <>
@@ -30,7 +30,7 @@ export default function Navbar() {
               </a>
               <nav className="hidden lg:flex space-x-10 text-gray-700 font-medium">
                 {['Vocabulary', 'Grammar', 'Expressions', 'Pronunciation', 'Reading'].map((item) => (
-                  <a key={item} href="#" className="hover:text-blue-600 transition">
+                  <a key={item} href={`/${item.toLowerCase()}`} className="hover:text-blue-600 transition">
                     {item}
                   </a>
                 ))}
@@ -54,10 +54,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-      </header>
-
-      
-      
+      </header>  
     </>
   );
 }

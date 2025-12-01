@@ -1,4 +1,6 @@
 "use client";
+import Link from "next/link";
+
 import React, { useState } from 'react';
 import { 
   BookOpen, Search, Clock, ArrowRight, Bookmark, Globe, 
@@ -6,6 +8,7 @@ import {
   Layers, AlertTriangle, Briefcase, Handshake, Puzzle, 
   MessageCircle, Link as LinkIcon, Target
 } from 'lucide-react';
+import Navbar from '../navbar/navbar';
 
 // --- TYPE DEFINITIONS ---
 interface Category {
@@ -15,7 +18,7 @@ interface Category {
   lessons: number;
   words: number;
   time: string;
-  icon: React.ElementType; // Changed from string image to Icon component for flexibility
+  icon: React.ElementType;
   color: string;
   shadow: string;
 }
@@ -266,7 +269,7 @@ export default function CollocationsPage() {
   return (
     <>
       <div className="min-h-screen bg-[#F8FAFC] relative overflow-x-hidden font-sans">
-        <Navbar/>
+        <Navbar />
         {/* Background Decor */}
         <div className="hidden lg:flex flex-col gap-6 absolute left-6 top-40 opacity-20 select-none pointer-events-none">
           {[...Array(8)].map((_, i) => <div key={i} className="text-indigo-600 text-xl font-bold">~ ~ ~</div>)}
@@ -281,9 +284,9 @@ export default function CollocationsPage() {
               <div className="flex-1">
                 {/* Breadcrumb */}
                 <div className="inline-flex flex-wrap items-center gap-2 text-xs font-semibold bg-white px-4 py-1.5 rounded-full shadow-sm border border-slate-100 text-slate-500 mb-6">
-                  <a href="#" className="hover:text-blue-500 transition-colors">Home</a>
+                  <a href="/" className="hover:text-blue-500 transition-colors">Home</a>
                   <span className="text-slate-300">/</span>
-                  <a href="#" className="hover:text-blue-500 transition-colors">Expressions</a>
+                  <Link href="/expressions" className="hover:text-blue-500 transition-colors">Expressions</Link>
                   <span className="text-slate-300">/</span>
                   <span className="text-indigo-600">English Collocations</span>
                 </div>
